@@ -6,6 +6,6 @@
 - [x] Etap 4: RAG query (ukończono 2026-06-22)
 - [x] Etap 5: FastAPI (ukończono 2026-06-22)
 - [x] Etap 6: Chatbot widget (ukończono 2026-06-22)
-- [ ] Etap 7: Skrypty operacyjne
+- [x] Etap 7: Skrypty operacyjne (ukończono 2026-06-22)
 - [ ] Etap 8: Dokumentacja
 - [ ] Etap 9: Test end-to-end
