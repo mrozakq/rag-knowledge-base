@@ -2,7 +2,7 @@
 
 - [x] Etap 1: Infrastruktura Docker (ukończono 2026-06-22)
 - [x] Etap 2: Pobranie modeli (ukończono 2026-06-22)
-- [ ] Etap 3: Pipeline ingestion
+- [x] Etap 3: Pipeline ingestion (ukończono 2026-06-22)
 - [ ] Etap 4: RAG query
 - [ ] Etap 5: FastAPI
 - [ ] Etap 6: Chatbot widget

@@ -24,3 +24,8 @@ Powód: Pozwala COPY pipeline/ wewnątrz kontenera razem z api/
 Kontekst: Limit to 120s; mierzony czas dla krótkiego prompta to 17.72s
 Decyzja: Zostaje llama3.1:8b (nie przełączamy na mistral:7b)
 Powód: 17.72s << 120s; jest tu duży zapas nawet dla dłuższych promptów RAG
+
+[2026-06-22] [ETAP 3] chromadb client >= 1.0.0 zamiast ==0.5.3
+Kontekst: Serwer chromadb:latest to wersja 1.0.0 używająca API v2; klient 0.5.3 używał API v1 (410 Gone)
+Decyzja: chromadb>=1.0.0 w requirements.txt (zainstalowano 1.5.9)
+Powód: Klient musi pasować do API serwera; wersja latest serwera zawsze będzie >= 1.0.0
