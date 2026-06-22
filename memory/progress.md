@@ -7,5 +7,5 @@
 - [x] Etap 5: FastAPI (ukończono 2026-06-22)
 - [x] Etap 6: Chatbot widget (ukończono 2026-06-22)
 - [x] Etap 7: Skrypty operacyjne (ukończono 2026-06-22)
-- [ ] Etap 8: Dokumentacja
-- [ ] Etap 9: Test end-to-end
+- [x] Etap 8: Dokumentacja (ukończono 2026-06-22)
+- [x] Etap 9: Test end-to-end (ukończono 2026-06-22)

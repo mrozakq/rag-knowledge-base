@@ -92,7 +92,7 @@ def _chunk_id(source: str, index: int, text: str) -> str:
     return f"{source}:{index}:{h}"
 
 
-def ingest_directory(documents_dir: str = DOCUMENTS_DIR) -> int:
+def ingest_directory(documents_dir: str = DOCUMENTS_DIR, clear: bool = True) -> int:
     docs_path = Path(documents_dir)
     if not docs_path.exists():
         print(f"Documents directory not found: {docs_path}", file=sys.stderr)
@@ -101,6 +101,14 @@ def ingest_directory(documents_dir: str = DOCUMENTS_DIR) -> int:
     from urllib.parse import urlparse
     parsed = urlparse(CHROMA_HOST)
     chroma = chromadb.HttpClient(host=parsed.hostname, port=parsed.port or 8000)
+
+    if clear:
+        try:
+            chroma.delete_collection(CHROMA_COLLECTION)
+            print(f"Cleared existing collection: {CHROMA_COLLECTION}")
+        except Exception:
+            pass
+
     collection = chroma.get_or_create_collection(CHROMA_COLLECTION)
 
     timestamp = datetime.datetime.utcnow().isoformat()
