@@ -41,3 +41,13 @@ Powód: Z stream=False trzeba czekać na cały response w jednym bloku; z stream
 Kontekst: Model załadowany z context_length=4096; prompt RAG to ~2753 tokenów
 Decyzja: Brak zmiany - 4096 wystarczy (2753 input + ~100 output = 2853 < 4096)
 Powód: Prefill dla 2753 tok tylko 1.4s; zmiana na większy context niepotrzebna
+
+[2026-06-22] [ETAP 5] run_in_executor dla blocking pipeline functions
+Kontekst: answer() i ingest_directory() to synchroniczne funkcje blokujące event loop FastAPI
+Decyzja: asyncio.get_event_loop().run_in_executor(None, fn) w endpointach /query i /ingest
+Powód: FastAPI jest async; blokujące operacje w async endpoint blokują cały serwer
+
+[2026-06-22] [ETAP 5] sys.path.insert dla pipeline imports w main.py
+Kontekst: pipeline/query.py robi "from config import" (nie "from pipeline.config import")
+Decyzja: sys.path.insert(0, "/app/pipeline") na początku main.py
+Powód: Skrypty pipeline działają standalone z CWD=/app/pipeline; w kontenerze CWD=/app
