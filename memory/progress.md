@@ -1,7 +1,7 @@
 # Progress
 
 - [x] Etap 1: Infrastruktura Docker (ukończono 2026-06-22)
-- [ ] Etap 2: Pobranie modeli
+- [x] Etap 2: Pobranie modeli (ukończono 2026-06-22)
 - [ ] Etap 3: Pipeline ingestion
 - [ ] Etap 4: RAG query
 - [ ] Etap 5: FastAPI

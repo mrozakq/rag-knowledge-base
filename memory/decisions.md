@@ -19,3 +19,8 @@ Powód: Sprawdza czy daemon Ollamy jest gotowy do obsługi zapytań
 Kontekst: Dockerfile w ./api/ chciał skopiować ../pipeline/ - poza kontekstem
 Decyzja: build context ustawiony na root projektu (.), Dockerfile w api/Dockerfile
 Powód: Pozwala COPY pipeline/ wewnątrz kontenera razem z api/
+
+[2026-06-22] [ETAP 2] llama3.1:8b — model pozostaje bez zmiany
+Kontekst: Limit to 120s; mierzony czas dla krótkiego prompta to 17.72s
+Decyzja: Zostaje llama3.1:8b (nie przełączamy na mistral:7b)
+Powód: 17.72s << 120s; jest tu duży zapas nawet dla dłuższych promptów RAG
