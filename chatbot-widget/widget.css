@@ -1,0 +1,188 @@
+:root {
+  --rag-primary: #185FA5;
+  --rag-bg: #ffffff;
+  --rag-surface: #f5f7fa;
+  --rag-border: #dde1e7;
+  --rag-text: #1a1a2e;
+  --rag-muted: #6b7280;
+  --rag-user-bg: var(--rag-primary);
+  --rag-user-text: #ffffff;
+  --rag-bot-bg: #f0f4f8;
+  --rag-bot-text: var(--rag-text);
+  --rag-radius: 16px;
+  --rag-shadow: 0 8px 32px rgba(0,0,0,0.14);
+}
+
+#rag-widget-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--rag-primary);
+  border: none;
+  cursor: pointer;
+  box-shadow: var(--rag-shadow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9998;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+#rag-widget-btn:hover { transform: scale(1.08); box-shadow: 0 12px 40px rgba(0,0,0,0.2); }
+#rag-widget-btn svg { width: 28px; height: 28px; fill: #fff; }
+
+#rag-widget-panel {
+  position: fixed;
+  bottom: 92px;
+  right: 24px;
+  width: 380px;
+  max-width: calc(100vw - 32px);
+  height: 520px;
+  max-height: calc(100vh - 120px);
+  background: var(--rag-bg);
+  border-radius: var(--rag-radius);
+  box-shadow: var(--rag-shadow);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 9999;
+  border: 1px solid var(--rag-border);
+  animation: ragSlideUp 0.22s ease;
+}
+@keyframes ragSlideUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+#rag-widget-header {
+  background: var(--rag-primary);
+  color: #fff;
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+#rag-widget-header span { font-weight: 600; font-size: 15px; }
+#rag-widget-close {
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 20px;
+  line-height: 1;
+  padding: 2px 6px;
+  border-radius: 4px;
+  opacity: 0.8;
+}
+#rag-widget-close:hover { opacity: 1; background: rgba(255,255,255,0.15); }
+
+#rag-widget-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: var(--rag-surface);
+}
+
+.rag-msg {
+  max-width: 85%;
+  padding: 10px 14px;
+  border-radius: 14px;
+  font-size: 14px;
+  line-height: 1.5;
+  word-break: break-word;
+}
+.rag-msg-user {
+  align-self: flex-end;
+  background: var(--rag-user-bg);
+  color: var(--rag-user-text);
+  border-bottom-right-radius: 4px;
+}
+.rag-msg-bot {
+  align-self: flex-start;
+  background: var(--rag-bot-bg);
+  color: var(--rag-bot-text);
+  border-bottom-left-radius: 4px;
+}
+.rag-msg-error {
+  align-self: flex-start;
+  background: #fef2f2;
+  color: #b91c1c;
+  border: 1px solid #fca5a5;
+  border-bottom-left-radius: 4px;
+}
+
+.rag-sources {
+  margin-top: 6px;
+  font-size: 12px;
+  color: var(--rag-muted);
+  border-top: 1px solid rgba(0,0,0,0.08);
+  padding-top: 6px;
+}
+.rag-sources strong { display: block; margin-bottom: 2px; }
+.rag-source-item { margin: 1px 0; }
+
+.rag-typing {
+  align-self: flex-start;
+  background: var(--rag-bot-bg);
+  border-radius: 14px;
+  border-bottom-left-radius: 4px;
+  padding: 10px 16px;
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+.rag-typing span {
+  width: 7px; height: 7px;
+  background: var(--rag-muted);
+  border-radius: 50%;
+  animation: ragBounce 1.2s infinite;
+}
+.rag-typing span:nth-child(2) { animation-delay: 0.2s; }
+.rag-typing span:nth-child(3) { animation-delay: 0.4s; }
+@keyframes ragBounce {
+  0%, 60%, 100% { transform: translateY(0); }
+  30%           { transform: translateY(-6px); }
+}
+
+#rag-widget-form {
+  display: flex;
+  gap: 8px;
+  padding: 12px;
+  background: var(--rag-bg);
+  border-top: 1px solid var(--rag-border);
+  flex-shrink: 0;
+}
+#rag-widget-input {
+  flex: 1;
+  border: 1px solid var(--rag-border);
+  border-radius: 10px;
+  padding: 9px 13px;
+  font-size: 14px;
+  outline: none;
+  resize: none;
+  background: var(--rag-surface);
+  color: var(--rag-text);
+  font-family: inherit;
+  transition: border-color 0.15s;
+}
+#rag-widget-input:focus { border-color: var(--rag-primary); }
+#rag-widget-send {
+  background: var(--rag-primary);
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  cursor: pointer;
+  padding: 9px 14px;
+  font-size: 18px;
+  line-height: 1;
+  flex-shrink: 0;
+  transition: opacity 0.15s;
+}
+#rag-widget-send:hover { opacity: 0.88; }
+#rag-widget-send:disabled { opacity: 0.45; cursor: default; }

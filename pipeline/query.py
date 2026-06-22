@@ -77,8 +77,7 @@ def _llm_generate(prompt: str) -> str:
     """Stream the response to avoid read-timeout on long CPU inference."""
     import json as _json
     parts = []
-    # read=300: cold model load (~60s) + prefill + first token generation
-    with httpx.Client(timeout=httpx.Timeout(connect=10, read=300, write=10, pool=5)) as client:
+    with httpx.Client(timeout=httpx.Timeout(connect=30, read=None, write=30, pool=10)) as client:
         with client.stream(
             "POST",
             f"{OLLAMA_HOST}/api/generate",

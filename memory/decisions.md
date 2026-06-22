@@ -51,3 +51,9 @@ Powód: FastAPI jest async; blokujące operacje w async endpoint blokują cały 
 Kontekst: pipeline/query.py robi "from config import" (nie "from pipeline.config import")
 Decyzja: sys.path.insert(0, "/app/pipeline") na początku main.py
 Powód: Skrypty pipeline działają standalone z CWD=/app/pipeline; w kontenerze CWD=/app
+
+[2026-06-22] [ETAP 5/6] timeout=None dla LLM streaming call
+Kontekst: httpx read=300s timeoutował mimo że generacja kończy się w <200s; problem nieregularny
+Decyzja: timeout=httpx.Timeout(connect=30, read=None, write=30, pool=10) — read=None (brak limitu)
+Powód: CPU inference jest z natury wolne i nieprzewidywalne; brak limitu jest bezpieczny
+       bo uvicorn sam odcina martwe połączenia, a user może poczekać 90-130s na odpowiedź
